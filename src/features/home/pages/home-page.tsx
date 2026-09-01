@@ -1,8 +1,14 @@
+"use client";
+
+import GithubSection from "../components/github-section";
+import ExperienceSection from "../components/experience-section";
+
 const HomePage = () => {
   return (
-    <div className="w-full text-zinc-300 font-mono text-sm">
-      {/* Content will be placed here */}
-    </div>
+    <>
+      <ExperienceSection />
+      <GithubSection />
+    </>
   );
 };
 export default HomePage;

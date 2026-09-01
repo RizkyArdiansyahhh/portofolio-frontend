@@ -99,8 +99,6 @@ export function Navbar() {
           })}
         </div>
       </div>
-      {/* Reusable Hatched Accent Pattern Component */}
-      <HatchedPattern height="h-2" angle={45} thickness={1.5} gap={5} />
     </nav>
   );
 }
