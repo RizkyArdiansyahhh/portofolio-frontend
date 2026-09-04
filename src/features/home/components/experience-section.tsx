@@ -26,12 +26,10 @@ const dummyExperiences = [
 export function ExperienceSection() {
   return (
     <>
-      <HatchedPattern />
-
       <section className="w-full text-zinc-300 font-mono text-sm px-5 py-6 space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-zinc-200 tracking-tight">
-            Work Experience
+          <h2 className="text-2xl font-semibold text-zinc-200 tracking-tight">
+            Experience
           </h2>
           <span className="text-xs text-zinc-500 font-mono">
             {dummyExperiences.length} Roles
@@ -44,6 +42,7 @@ export function ExperienceSection() {
           ))}
         </div>
       </section>
+      <HatchedPattern />
     </>
   );
 }

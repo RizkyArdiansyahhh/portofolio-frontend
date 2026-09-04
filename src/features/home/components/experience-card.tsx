@@ -37,20 +37,20 @@ export function ExperienceCard({
     <div className="w-full text-zinc-200 font-sans select-none">
       {/* 🏢 1. Company Header (Logo + Nama PT) */}
       <div className="flex items-center gap-2.5 mb-2.5">
-        <div className="relative w-6 h-6 rounded-full overflow-hidden bg-zinc-800 flex items-center justify-center border border-zinc-700/60 shrink-0">
+        <div className="relative w-8 h-8 rounded-full overflow-hidden bg-zinc-800 flex items-center justify-center border border-zinc-700/60 shrink-0">
           {companyLogo ? (
             <Image
               src={companyLogo}
               alt={company}
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               className="object-cover"
             />
           ) : (
             <div className="w-full h-full bg-linear-to-tr from-amber-500 via-sky-400 to-emerald-400" />
           )}
         </div>
-        <h3 className="font-semibold text-sm text-zinc-100 tracking-tight">
+        <h3 className="font-semibold text-lg text-zinc-100 tracking-tight">
           {company}
         </h3>
       </div>
@@ -68,10 +68,10 @@ export function ExperienceCard({
             <Sparkles className="w-3.5 h-3.5" />
           </button>
 
-          {/* 🌿 Garis Cabang Pohon yang Menuju ke Baris Metadata/Deskripsi */}
+          {/* 🌿 Garis Cabang Siku Tegak Lurus (Tanpa Lengkungan) */}
           <div
             className={cn(
-              "absolute left-3.5 top-7 w-3 border-l border-b border-zinc-800 rounded-bl-md transition-all duration-300 pointer-events-none",
+              "absolute left-3.5 top-7 w-3 border-l border-b border-zinc-800 transition-all duration-300 pointer-events-none",
               isOpen ? "bottom-3" : "h-4",
             )}
           />
@@ -111,9 +111,9 @@ export function ExperienceCard({
             )}
           </div>
 
-          {/* Baris 3: Konten Bullet Points (Expanded) */}
+          {/* Baris 3: Konten Bullet Points (Hanya saat Expanded) */}
           <AnimatePresence initial={false}>
-            {isOpen && (
+            {isOpen && descriptions.length > 0 && (
               <motion.div
                 key="content"
                 initial={{ height: 0, opacity: 0 }}
@@ -135,37 +135,36 @@ export function ExperienceCard({
                 }}
                 className="overflow-hidden"
               >
-                <div className="pt-3 pb-2 space-y-2.5">
-                  {descriptions.length > 0 && (
-                    <ul className="space-y-2.5">
-                      {descriptions.map((desc, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-2.5 text-xs text-zinc-300/90 leading-relaxed font-sans"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 shrink-0 mt-1.5" />
-                          <span>{desc}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {skills.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {skills.map((skill, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 text-[10px] font-mono rounded bg-zinc-900 border border-zinc-800 text-zinc-400"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                <div className="pt-3 pb-1 space-y-2.5">
+                  <ul className="space-y-2.5">
+                    {descriptions.map((desc, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2.5 text-xs text-zinc-300/90 leading-relaxed font-sans"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 shrink-0 mt-1.5" />
+                        <span>{desc}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Baris 4: Skills / Tools Badges (Selalu Tampil) */}
+          {skills.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 pt-2.5">
+              {skills.map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-2 py-0.5 text-[10px] font-mono rounded bg-zinc-900 border border-zinc-800 text-zinc-400"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
