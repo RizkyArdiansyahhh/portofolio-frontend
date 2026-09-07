@@ -2,6 +2,7 @@ import Header from "@/components/shared/header";
 import Navbar from "@/components/shared/navbar";
 import Footer from "@/components/shared/footer";
 import PixelBlast from "@/components/shared/pixel-blast";
+import VinylPlayer from "@/components/shared/vinyl-player";
 
 export default function GuestLayout({
   children,
@@ -37,6 +38,9 @@ export default function GuestLayout({
         </div>
         <Footer />
       </div>
+
+      {/* 3. Floating Vinyl Record Music Player di sudut bawah kiri */}
+      <VinylPlayer />
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryProvider } from "@/components/provider/query-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const ibmPlexMono = IBM_Plex_Mono({
   weight: ["300", "400", "500", "600", "700"],
@@ -49,7 +51,10 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-mono">
         <NextIntlClientProvider messages={messages}>
-          <TooltipProvider>{children}</TooltipProvider>
+          <QueryProvider>
+            <TooltipProvider>{children}</TooltipProvider>
+            <Toaster position="top-right" />
+          </QueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>
