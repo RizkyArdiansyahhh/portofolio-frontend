@@ -9,21 +9,23 @@ const getExperienceById = async (id: string) => {
     return data.data
 }
 
- const getExperienceByIdOptions = (id: string) => {
+export const getExperienceByIdOptions = (id?: string) => {
     return queryOptions({
-        queryKey: experienceKeys.detail(id),
-        queryFn: () => getExperienceById(id),
+        queryKey: id ? experienceKeys.detail(id) : experienceKeys.all,
+        queryFn: () => getExperienceById(id!),
+        enabled: Boolean(id),
     })
 }
 
 type UseGetExperienceByIdParams = {
-    id: string
-    queryConfig?: QueryConfig<typeof getExperienceById>
+    id?: string
+    queryConfig?: QueryConfig<typeof getExperienceByIdOptions>
 }
 
-export const useGetExperienceById = (params : UseGetExperienceByIdParams) => {
+export const useGetExperienceById = ({ id, queryConfig }: UseGetExperienceByIdParams = {}) => {
     return useQuery({
-        ...getExperienceByIdOptions(params.id),
-        ...params.queryConfig
+        ...getExperienceByIdOptions(id),
+        ...queryConfig,
+        enabled: Boolean(id) && (queryConfig?.enabled !== false),
     })
 }

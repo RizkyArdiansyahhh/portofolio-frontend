@@ -8,12 +8,13 @@ import { cn } from "@/lib/utils";
 
 export interface ExperienceCardProps {
   company: string;
-  companyLogo?: string;
+  companyLogo?: string | null;
   role: string;
   employmentType: string;
   startDate: string;
-  endDate?: string;
+  endDate?: string | null;
   duration?: string;
+  description?: string[];
   descriptions?: string[];
   skills?: string[];
   defaultOpen?: boolean;
@@ -25,13 +26,15 @@ export function ExperienceCard({
   role,
   employmentType,
   startDate,
-  endDate = "Present",
+  endDate,
   duration,
-  descriptions = [],
+  description,
+  descriptions = description ?? [],
   skills = [],
   defaultOpen = false,
 }: ExperienceCardProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const displayEndDate = endDate || "Present";
 
   return (
     <div className="w-full text-zinc-200 font-sans select-none">
@@ -101,7 +104,7 @@ export function ExperienceCard({
             <span>{employmentType}</span>
             <span className="text-zinc-700">|</span>
             <span>
-              {startDate} - {endDate}
+              {startDate} - {displayEndDate}
             </span>
             {duration && (
               <>
